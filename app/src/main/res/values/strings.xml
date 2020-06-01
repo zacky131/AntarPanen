@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Antar Panen</string>
+    <string name="notification_error_ssl_cert_invalid">ssl certificate invalid</string>
+
+</resources>
