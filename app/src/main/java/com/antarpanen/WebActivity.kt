@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.http.SslError
+import android.os.Build
 import android.os.Bundle
 import android.view.KeyEvent
 import android.webkit.SslErrorHandler
@@ -13,6 +14,7 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_web.*
 
@@ -31,6 +33,7 @@ class WebActivity : AppCompatActivity() {
 
     private lateinit var pageUrl: String
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web)
@@ -48,12 +51,17 @@ class WebActivity : AppCompatActivity() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     @SuppressLint("SetJavaScriptEnabled")
     private fun initWebView() {
         webView.settings.javaScriptEnabled = true
         webView.settings.loadWithOverviewMode = true
         webView.settings.useWideViewPort = true
         webView.settings.domStorageEnabled = true
+        webView.settings.builtInZoomControls = true
+        webView.settings.displayZoomControls = true
+        webView.settings.allowFileAccess = true
+        webView.settings.allowFileAccessFromFileURLs = true
 
         webView.webViewClient = object : WebViewClient() {
             override
